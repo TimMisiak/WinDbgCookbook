@@ -41,3 +41,8 @@ Then run the program and later you can view the graph using a command like this:
             dbgeng!IMAGE_HEADER_INFO::ReadLoadConfigDir : dbgeng!IMAGE_HEADER_INFO::ReadLoadConfigDir - 1
             dbgeng!IMAGE_HEADER_INFO::ReadDebugDir : dbgeng!IMAGE_HEADER_INFO::ReadDebugDir - 4
 ```
+
+
+# Other collections of scripts and queries
+
+Yarden Shafir's WinDbg Scripts: https://github.com/yardenshafir/WinDbg_Scripts
