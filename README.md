@@ -1,7 +1,19 @@
 # WinDbgCookbook
-This is a repo for small, useful scripts and extensions.
+This is a repo for small, useful scripts, extensions, and debugger data model "dx" queries.
 
 Feel free to add your own scripts or update any of the scripts here. If you add a new script, just add a line in this readme file giving a summary of your script.
+
+# Module queries
+
+Find if a module called "dbgeng.dll" has any imports called "RegGetValue".
+
+```dx @$curprocess.Modules["dbgeng.dll"].Contents.Imports.SelectMany(x => x.Functions).Where(x => x.ToDisplayString().Contains("RegGetValue"))```
+
+# Thread queries
+
+Find any threads that are currently executing for a module called "mymodule.dll" or "mymodule.exe"
+
+dx @$curprocess.Threads.Where(x => x.Stack.Frames.Any(f => f.ToDisplayString().Contains("mymodule!")))
 
 # stackCollector.js
 
