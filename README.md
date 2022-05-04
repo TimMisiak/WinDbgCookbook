@@ -3,17 +3,33 @@ This is a repo for small, useful scripts, extensions, and debugger data model "d
 
 Feel free to add your own scripts or update any of the scripts here. If you add a new script, just add a line in this readme file giving a summary of your script.
 
-# Module queries
+# Modules
 
 Find if a module called "dbgeng.dll" has any imports called "RegGetValue".
 
 ```dx @$curprocess.Modules["dbgeng.dll"].Contents.Imports.SelectMany(x => x.Functions).Where(x => x.ToDisplayString().Contains("RegGetValue"))```
 
-# Thread queries
+# Threads
 
 Find any threads that are currently executing for a module called "mymodule.dll" or "mymodule.exe"
 
 ```dx @$curprocess.Threads.Where(x => x.Stack.Frames.Any(f => f.ToDisplayString().Contains("mymodule!")))```
+
+# Environment variables
+
+Find an environment variable by name
+
+```
+dx @$getEnvVar=(var) => @$curprocess.Attributes.Environment.Variables.Where(x => x.ToLower().StartsWith(var.ToLower() + "="))
+```
+
+Example:
+
+```
+0:000> dx @$getEnvVar("tmp")
+@$getEnvVar("tmp")                
+    [0x0]            : TMP=C:\Users\tmisiak\AppData\Local\Temp
+```
 
 # stackCollector.js
 
