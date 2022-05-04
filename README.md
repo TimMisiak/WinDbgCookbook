@@ -13,7 +13,7 @@ Find if a module called "dbgeng.dll" has any imports called "RegGetValue".
 
 Find any threads that are currently executing for a module called "mymodule.dll" or "mymodule.exe"
 
-dx @$curprocess.Threads.Where(x => x.Stack.Frames.Any(f => f.ToDisplayString().Contains("mymodule!")))
+```dx @$curprocess.Threads.Where(x => x.Stack.Frames.Any(f => f.ToDisplayString().Contains("mymodule!")))```
 
 # stackCollector.js
 
