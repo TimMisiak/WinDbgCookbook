@@ -45,4 +45,7 @@ Then run the program and later you can view the graph using a command like this:
 
 # Other collections of scripts and queries
 
-Yarden Shafir's WinDbg Scripts: https://github.com/yardenshafir/WinDbg_Scripts
+* Official WinDbg samples: https://github.com/microsoft/WinDbg-Samples
+* Yarden Shafir's WinDbg Scripts: https://github.com/yardenshafir/WinDbg_Scripts
+* Hugsy's WinDbg JS scripts: https://github.com/hugsy/windbg_js_scripts
+* Axel Souchet's scripts: https://github.com/0vercl0k/windbg-scripts
