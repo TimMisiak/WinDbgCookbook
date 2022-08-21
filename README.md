@@ -58,6 +58,20 @@ Then run the program and later you can view the graph using a command like this:
             dbgeng!IMAGE_HEADER_INFO::ReadDebugDir : dbgeng!IMAGE_HEADER_INFO::ReadDebugDir - 4
 ```
 
+# watchForStackCorruption.js
+
+This script adds a function that can watch for stack corruptions in a function on the target.
+
+Use it by running:
+
+```
+0:000> dx @$scriptContents.watchFunctionForStackCorruption("OverflowFunc")
+@$scriptContents.watchFunctionForStackCorruption("OverflowFunc")
+0:000> g
+Stack corruption detected!
+WindowsConsoleApp!OverflowFunc+0x3b:
+00007ff7`56cb117b f3aa            rep stos byte ptr [rdi]
+```
 
 # Other collections of scripts and queries
 
