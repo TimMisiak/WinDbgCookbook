@@ -9,9 +9,9 @@ Find if a module called "dbgeng.dll" has any imports called "RegGetValue".
 
 ```dx @$curprocess.Modules["dbgeng.dll"].Contents.Imports.SelectMany(x => x.Functions).Where(x => x.ToDisplayString().Contains("RegGetValue"))```
 
-Set a breakpoint on every export of "symsrv.dll"
+Set a breakpoint on every export of "symsrv.dll". (Note, "select" isn't quite right here because it's evaluated lazily. We need a better way to do this)
 
-```dx -s @$curprocess.Modules["symsrv"].Contents.Exports.Select(x => Debugger.Utility.Control.ExecuteCommand("bp " + x.CodeAddress.ToDisplayString("x")))```
+```dx @$curprocess.Modules["symsrv"].Contents.Exports.Select(x => Debugger.Utility.Control.ExecuteCommand("bp " + x.CodeAddress.ToDisplayString("x")))```
 
 # Threads
 
