@@ -9,6 +9,10 @@ Find if a module called "dbgeng.dll" has any imports called "RegGetValue".
 
 ```dx @$curprocess.Modules["dbgeng.dll"].Contents.Imports.SelectMany(x => x.Functions).Where(x => x.ToDisplayString().Contains("RegGetValue"))```
 
+Set a breakpoint on every export of "symsrv.dll"
+
+```dx -r1 @$curprocess.Modules["symsrv"].Contents.Exports.Select(x => Debugger.Utility.Control.ExecuteCommand("bp " + x.CodeAddress.ToDisplayString("x")))```
+
 # Threads
 
 Find any threads that are currently executing for a module called "mymodule.dll" or "mymodule.exe"
