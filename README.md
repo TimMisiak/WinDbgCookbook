@@ -77,6 +77,22 @@ WindowsConsoleApp!OverflowFunc+0x3b:
 00007ff7`56cb117b f3aa            rep stos byte ptr [rdi]
 ```
 
+# ttdUtil.js
+
+Find all calls to exports of a specific module for a TTD trace:
+
+```
+0:000> dx -g @$scriptContents.AllExportCalls("symsrv")
+===========================================================================================================================================================================================================================================================================================================================
+=           = (+) EventType = (+) ThreadId = (+) UniqueThreadId = (+) TimeStart  = (+) TimeEnd    = (+) Function                               = (+) FunctionAddress = (+) ReturnAddress = (+) ReturnValue = (+) Parameters = (+) SystemTimeStart                          = (+) SystemTimeEnd                            =
+===========================================================================================================================================================================================================================================================================================================================
+= [0x0]     - 0x0           - 0x8610       - 0x2                - 10A0BD:77      - 10A0BF:BC      - symsrv!SymbolServerSetOptionsW             - 0x7ffa9d5627c0      - 0x7ffa340b876a    - 1               - {...}          - Thursday, September 15, 2022 23:17:59.836    - Thursday, September 15, 2022 23:17:59.836    =
+= [0x1]     - 0x0           - 0x8610       - 0x2                - 10A0C0:15      - 10A0C0:A4      - symsrv!SymbolServerSetOptionsW             - 0x7ffa9d5627c0      - 0x7ffa340b87b1    - 1               - {...}          - Thursday, September 15, 2022 23:17:59.836    - Thursday, September 15, 2022 23:17:59.836    =
+= [0x2]     - 0x0           - 0x8610       - 0x2                - 10A0CA:15      - 10A0CA:A3      - symsrv!SymbolServerSetOptionsW             - 0x7ffa9d5627c0      - 0x7ffa340b87b1    - 1               - {...}          - Thursday, September 15, 2022 23:17:59.836    - Thursday, September 15, 2022 23:17:59.836    =
+= [0x3]     - 0x0           - 0x8610       - 0x2                - 10A0CE:15      - 10A0CE:9F      - symsrv!SymbolServerSetOptionsW             - 0x7ffa9d5627c0      - 0x7ffa340b87b1    - 1               - {...}          - Thursday, September 15, 2022 23:17:59.836    - Thursday, September 15, 2022 23:17:59.836    =
+= [0x4]     - 0x0           - 0x8610       - 0x2                - 10A0D0:18      - 10A0D1:0       - symsrv!SymbolServerGetOptionData           - 0x7ffa9d562db0      - 0x7ffa340b8857    - 0               - {...}          - Thursday, September 15, 2022 23:17:59.836    - Thursday, September 15, 2022 23:17:59.836    =
+```
+
 # Javascript tips
 
 With "dx", you can often index into a collection dynamically via multiple keys. For instance, ```@$curprocess.Modules[0]``` works as well as ```@$curprocess.Modules["foo.dll"]``` and ```@$curprocess.Modules["foo"]```. The same thing doesn't work directly from JavaScript because it doesn't support dynamic indexing. Instead the data model projects this in as ".getValueAt", so you can do:
