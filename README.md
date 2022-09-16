@@ -77,6 +77,14 @@ WindowsConsoleApp!OverflowFunc+0x3b:
 00007ff7`56cb117b f3aa            rep stos byte ptr [rdi]
 ```
 
+# Javascript tips
+
+With "dx", you can often index into a collection dynamically via multiple keys. For instance, ```@$curprocess.Modules[0]``` works as well as ```@$curprocess.Modules["foo.dll"]``` and ```@$curprocess.Modules["foo"]```. The same thing doesn't work directly from JavaScript because it doesn't support dynamic indexing. Instead the data model projects this in as ".getValueAt", so you can do:
+
+```
+host.currentProcess.Modules.getValueAt("foo")
+```
+
 # Other collections of scripts and queries
 
 * Official WinDbg samples: https://github.com/microsoft/WinDbg-Samples
