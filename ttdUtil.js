@@ -15,3 +15,13 @@ function AllExportCalls(mod)
     var funcNamesCopy = [...funcNames];
     return TTD.Calls.apply(TTD, funcNamesCopy);
 }
+
+function AllExternalExportCalls(mod)
+{
+    var calls = AllExportCalls(mod);
+    var exportModule = host.currentProcess.Modules.getValueAt(mod);
+    var start = exportModule.BaseAddress;
+    var end = exportModule.BaseAddress.add(exportModule.Size);
+    return calls.Where(x => x.ReturnAddress.compareTo(start) < 0 ||
+                            x.ReturnAddress.compareTo(end) > 0);
+}
