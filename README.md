@@ -13,6 +13,10 @@ Set a breakpoint on every export of "symsrv.dll". (The ```.Where(x => false)``` 
 
 ```dx @$curprocess.Modules["symsrv"].Contents.Exports.Select(x => Debugger.Utility.Control.ExecuteCommand("bp " + x.CodeAddress.ToDisplayString("x"))).Where(x => false)```
 
+Get a table of every import from a module "dbghelp":
+
+dx -g @$curprocess.Modules["dbghelp"].Contents.Imports.SelectMany(m => m.Functions.Select(f => new {Mod = m, Func = f})), 1000
+
 # Threads
 
 Find any threads that are currently executing for a module called "mymodule.dll" or "mymodule.exe"
