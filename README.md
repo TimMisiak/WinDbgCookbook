@@ -15,7 +15,7 @@ Set a breakpoint on every export of "symsrv.dll". (The ```.Where(x => false)``` 
 
 Get a table of every import from a module "dbghelp":
 
-dx -g @$curprocess.Modules["dbghelp"].Contents.Imports.SelectMany(m => m.Functions.Select(f => new {Mod = m, Func = f})), 1000
+```dx -g @$curprocess.Modules["dbghelp"].Contents.Imports.SelectMany(m => m.Functions.Select(f => new {Mod = m, Func = f})), 1000```
 
 # Threads
 
@@ -99,7 +99,7 @@ Find all calls to exports of a specific module for a TTD trace:
 
 # Javascript tips
 
-With "dx", you can often index into a collection dynamically via multiple keys. For instance, ```@$curprocess.Modules[0]``` works as well as ```@$curprocess.Modules["foo.dll"]``` and ```@$curprocess.Modules["foo"]```. The same thing doesn't work directly from JavaScript because it doesn't support dynamic indexing. Instead the data model projects this in as ".getValueAt", so you can do:
+With `dx`, you can often index into a collection dynamically via multiple keys. For instance, ```@$curprocess.Modules[0]``` works as well as ```@$curprocess.Modules["foo.dll"]``` and ```@$curprocess.Modules["foo"]```. The same thing doesn't work directly from JavaScript because it doesn't support dynamic indexing. Instead the data model projects this in as `.getValueAt`, so you can do:
 
 ```
 host.currentProcess.Modules.getValueAt("foo")
