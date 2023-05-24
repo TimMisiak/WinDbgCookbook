@@ -39,6 +39,14 @@ Example:
     [0x0]            : TMP=C:\Users\tmisiak\AppData\Local\Temp
 ```
 
+# .NET Managed objects with "dx"
+
+You can "cast" a managed object pointer to "System.Object" and dx will give you the full object information.
+
+```
+dx (System_Private_CoreLib!System.Object *)0x1234
+```
+
 # stackCollector.js
 
 This script adds a function that can be called from inside a breakpoint condition to capture the stack trace at the time the breakpoint was hit, and add it to a call graph. For instance, load the script and then set a breakpoint like:
