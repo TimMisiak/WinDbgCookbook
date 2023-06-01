@@ -17,6 +17,10 @@ Get a table of every import from a module "dbghelp":
 
 ```dx -g @$curprocess.Modules["dbghelp"].Contents.Imports.SelectMany(m => m.Functions.Select(f => new {Mod = m, Func = f})), 1000```
 
+Find any modules that import module "foo.dll":
+
+```dx @$curprocess.Modules.Where(m => m.Contents.Imports.Any(x => x.ModuleName.ToLower() == "foo.dll"))```
+
 # Threads
 
 Find any threads that are currently executing for a module called "mymodule.dll" or "mymodule.exe"
